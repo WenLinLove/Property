@@ -301,7 +301,7 @@ export default class Welcome extends React.Component<IProps, IState> {
           </div>
 
           <div style={{ textAlign: 'center' }}>
-            <Button type="primary">下一步</Button>
+            <Button type="primary">下一步 </Button>
           </div>
         </div>
       </div>
