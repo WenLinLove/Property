@@ -15,11 +15,15 @@ export default class Welcome extends React.Component<IProps, IState> {
     return (
       <div className={styles.admin_tab}>
         <div>
-          <PageHeader title="绿化养护" subTitle="" />
+          <PageHeader title="清洁卫生" subTitle="" />
+          <div style={{ float: 'right' }}>
+            <span>清洁卫生小计</span>
+            <Input placeholder="Basic usage" />
+          </div>
           <div>
             <PageHeader title="测算方法" subTitle="" />
             <div className={styles.greenpd}>
-              <span>精算法：</span>
+              <span>人工物料精算：</span>
               <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
                 <Option value="jack">Jack</Option>
                 <Option value="lucy">Lucy</Option>
@@ -27,7 +31,7 @@ export default class Welcome extends React.Component<IProps, IState> {
               </Select>
             </div>
             <div className={styles.greenpd}>
-              <span>估算法：</span>
+              <span>估算：</span>
               <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
                 <Option value="jack">Jack</Option>
                 <Option value="lucy">Lucy</Option>
@@ -44,7 +48,7 @@ export default class Welcome extends React.Component<IProps, IState> {
             </div>
           </div>
           <div className={styles.greenpd}>
-            <PageHeader title="服务标准" subTitle="" />
+            <PageHeader title="服务标准选择" subTitle="" />
             <div className={styles.greenpd}>
               <span>一级：</span>
               <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
@@ -85,14 +89,6 @@ export default class Welcome extends React.Component<IProps, IState> {
                 <Option value="Yiminghe">yiminghe</Option>
               </Select>
             </div>
-            <div className={styles.greenpd}>
-              <span>自定义：</span>
-              <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
-                <Option value="jack">Jack</Option>
-                <Option value="lucy">Lucy</Option>
-                <Option value="Yiminghe">yiminghe</Option>
-              </Select>
-            </div>
           </div>
 
           <div className={styles.greenpd}>
@@ -121,7 +117,7 @@ export default class Welcome extends React.Component<IProps, IState> {
                 <Option value="lucy">Lucy</Option>
                 <Option value="Yiminghe">yiminghe</Option>
               </Select>
-              <Input placeholder="Basic usage(元/年)" />
+              <Input placeholder="Basic usage(元/年)" /> <span>外包价格</span>
             </div>
           </div>
 
@@ -155,11 +151,36 @@ export default class Welcome extends React.Component<IProps, IState> {
           </div>
 
           <div className={styles.greenpd}>
-            <PageHeader title="绿化水费" subTitle="" />
+            <PageHeader title="清洁用水" subTitle="" />
             <div>
               <Input placeholder="Basic usage" />
-              <span>吨</span>
+              <span>吨/月</span>
             </div>
+          </div>
+
+          <div className={styles.greenpd}>
+            <PageHeader title="工具" subTitle="" />
+            <div>
+              <Input placeholder="Basic usage" />
+            </div>
+          </div>
+
+          <div className={styles.greenpd}>
+            <PageHeader title="低值易耗" subTitle="" />
+            <div>
+              <Input placeholder="Basic usage" />
+            </div>
+          </div>
+
+          <div className={styles.greenpd}>
+            <PageHeader title="消毒杀虫" subTitle="" />
+            <div>
+              <Input placeholder="Basic usage" />
+            </div>
+          </div>
+
+          <div className={styles.greenpd}>
+            <PageHeader title="垃圾清运" subTitle="" />
             <div>
               <Input placeholder="Basic usage" />
               <span>元/月</span>
@@ -167,136 +188,169 @@ export default class Welcome extends React.Component<IProps, IState> {
           </div>
 
           <div className={styles.greenpd}>
-            <PageHeader title="绿化水费" subTitle="" />
+            <PageHeader title="化粪池清淘" subTitle="" />
             <div>
               <Input placeholder="Basic usage" />
-              <span>吨</span>
+              <span>号井</span>
             </div>
             <div>
               <Input placeholder="Basic usage" />
-              <span>元/月</span>
+              <span>个</span>
             </div>
           </div>
 
           <div className={styles.greenpd}>
-            <PageHeader title="绿化垃圾清运" subTitle="" />
+            <PageHeader title="特殊部位清洁" subTitle="" />
             <div>
-              <Input placeholder="Basic usage" />
-              <span>元/月</span>
+              <div className={styles.greenpd}>
+                <span>公共卫生间：</span>
+                <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
+                  <Option value="jack">Jack</Option>
+                  <Option value="lucy">Lucy</Option>
+                  <Option value="Yiminghe">yiminghe</Option>
+                </Select>
+              </div>
+              <div>
+                <Input placeholder="Basic usage" />
+                <span>个</span>
+              </div>
+              <div>
+                <Input placeholder="Basic usage" />
+                <span>费用</span>
+              </div>
             </div>
-          </div>
 
-          <div className={styles.greenpd}>
-            <PageHeader title="施肥" subTitle="" />
             <div>
-              <Input placeholder="Basic usage" />
-              <span>元/月</span>
+              <div className={styles.greenpd}>
+                <span>大堂：</span>
+                <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
+                  <Option value="jack">Jack</Option>
+                  <Option value="lucy">Lucy</Option>
+                  <Option value="Yiminghe">yiminghe</Option>
+                </Select>
+              </div>
+              <div>
+                <Input placeholder="Basic usage" />
+                <span>个</span>
+              </div>
+              <div>
+                <Input placeholder="Basic usage" />
+                <span>费用</span>
+              </div>
             </div>
-          </div>
 
-          <div className={styles.greenpd}>
-            <PageHeader title="除草松土" subTitle="" />
             <div>
-              <Input placeholder="Basic usage" />
-              <span>元/月</span>
+              <div className={styles.greenpd}>
+                <span>会议室：</span>
+                <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
+                  <Option value="jack">Jack</Option>
+                  <Option value="lucy">Lucy</Option>
+                  <Option value="Yiminghe">yiminghe</Option>
+                </Select>
+              </div>
+              <div>
+                <Input placeholder="Basic usage" />
+                <span>个</span>
+              </div>
+              <div>
+                <Input placeholder="Basic usage" />
+                <span>费用</span>
+              </div>
             </div>
-          </div>
 
-          <div className={styles.greenpd}>
-            <PageHeader title="修剪" subTitle="" />
             <div>
-              <Input placeholder="Basic usage" />
-              <span>元/月</span>
+              <div className={styles.greenpd}>
+                <span>幕墙：</span>
+                <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
+                  <Option value="jack">Jack</Option>
+                  <Option value="lucy">Lucy</Option>
+                  <Option value="Yiminghe">yiminghe</Option>
+                </Select>
+              </div>
+              <div>
+                <Input placeholder="Basic usage" />
+                <span>个</span>
+              </div>
+              <div>
+                <Input placeholder="Basic usage" />
+                <span>费用</span>
+              </div>
             </div>
-          </div>
-          <div className={styles.greenpd}>
-            <PageHeader title="除虫" subTitle="" />
+
             <div>
-              <Input placeholder="Basic usage" />
-              <span>元/月</span>
+              <div className={styles.greenpd}>
+                <span>不锈钢材质养护：</span>
+                <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
+                  <Option value="jack">Jack</Option>
+                  <Option value="lucy">Lucy</Option>
+                  <Option value="Yiminghe">yiminghe</Option>
+                </Select>
+              </div>
+              <div>
+                <Input placeholder="Basic usage" />
+                <span>面积</span>
+              </div>
+              <div>
+                <Input placeholder="Basic usage" />
+                <span>费用</span>
+              </div>
             </div>
-          </div>
 
-          <div className={styles.greenpd}>
-            <PageHeader title="防风防冻" subTitle="" />
             <div>
-              <Input placeholder="Basic usage" />
-              <span>元/月</span>
+              <div className={styles.greenpd}>
+                <span>大理石材质养护：</span>
+                <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
+                  <Option value="jack">Jack</Option>
+                  <Option value="lucy">Lucy</Option>
+                  <Option value="Yiminghe">yiminghe</Option>
+                </Select>
+              </div>
+              <div>
+                <Input placeholder="Basic usage" />
+                <span>面积</span>
+              </div>
+              <div>
+                <Input placeholder="Basic usage" />
+                <span>费用</span>
+              </div>
             </div>
-          </div>
 
-          <div className={styles.greenpd}>
-            <PageHeader title="租摆绿植" subTitle="" />
             <div>
-              <Input placeholder="Basic usage" />
-              <span>元/月</span>
+              <div className={styles.greenpd}>
+                <span>其他特殊材质养护：</span>
+                <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
+                  <Option value="jack">Jack</Option>
+                  <Option value="lucy">Lucy</Option>
+                  <Option value="Yiminghe">yiminghe</Option>
+                </Select>
+              </div>
+              <div>
+                <Input placeholder="Basic usage" />
+                <span>面积</span>
+              </div>
+              <div>
+                <Input placeholder="Basic usage" />
+                <span>费用</span>
+              </div>
             </div>
-          </div>
 
-          <div className={styles.greenpd}>
-            <PageHeader title="景观维护" subTitle="" />
             <div>
-              <Input placeholder="Basic usage" />
-              <span>元/月</span>
-            </div>
-          </div>
-
-          <div>
-            <PageHeader title="特殊情况调整" subTitle="" />
-            <div className={styles.greenpd}>
-              <span>特殊情况调整：</span>
-              <Select defaultValue="jack" style={{ width: 120 }} onChange={handleChange}>
-                <Option value="jack">草坪面积大</Option>
-                <Option value="lucy">珍贵苗木</Option>
-                <Option value="Yiminghe">病虫害严重</Option>
-                <Option value="Yiminghe">死苗严重</Option>
-              </Select>
-
-              <Input placeholder="Basic usage" />
-              <span>元/月</span>
-            </div>
-          </div>
-
-          <div>
-            <PageHeader title="喷灌系统" subTitle="" />
-            <div className={styles.greenpd}>
-              <span>喷灌系统：</span>
-              <Input placeholder="Basic usage" />
-              <span>元/月</span>
-            </div>
-            <div className={styles.greenpd}>
-              <span>电费：</span>
-              <Input placeholder="Basic usage" />
-              <span>元/月</span>
-            </div>
-            <div className={styles.greenpd}>
-              <span>维护费：</span>
-              <Input placeholder="Basic usage" />
-              <span>元/月</span>
-            </div>
-          </div>
-
-          <div>
-            <PageHeader title="水系" subTitle="" />
-            <div className={styles.greenpd}>
-              <span>水费：</span>
-              <Input placeholder="Basic usage" />
-              <span>元/月</span>
-            </div>
-            <div className={styles.greenpd}>
-              <span>电费：</span>
-              <Input placeholder="Basic usage" />
-              <span>元/月</span>
-            </div>
-            <div className={styles.greenpd}>
-              <span>养护：</span>
-              <Input placeholder="Basic usage" />
-              <span>元/月</span>
-            </div>
-            <div className={styles.greenpd}>
-              <span>消杀：</span>
-              <Input placeholder="Basic usage" />
-              <span>元/月</span>
+              <div className={styles.greenpd}>
+                <span>自定义清洁项目：</span>
+                <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
+                  <Option value="jack">Jack</Option>
+                  <Option value="lucy">Lucy</Option>
+                  <Option value="Yiminghe">yiminghe</Option>
+                </Select>
+              </div>
+              <div>
+                <Input placeholder="Basic usage" />
+                <span>名称</span>
+              </div>
+              <div>
+                <Input placeholder="Basic usage" />
+                <span>费用</span>
+              </div>
             </div>
           </div>
 

@@ -8,13 +8,12 @@ import LoginItem, { LoginItemProps, LoginItemType } from './LoginItem';
 import LoginSubmit from './LoginSubmit';
 import LoginTab from './LoginTab';
 import styles from './index.less';
-import { LoginParamsType } from '@/services/login';
 
 export interface LoginProps {
   defaultActiveKey?: string;
   onTabChange?: (key: string) => void;
   style?: React.CSSProperties;
-  onSubmit?: (error: unknown, values: LoginParamsType) => void;
+  onSubmit: (values: Boolean) => void;
   className?: string;
   form: FormComponentProps['form'];
   onCreate?: (form?: FormComponentProps['form']) => void;
@@ -40,6 +39,7 @@ class Login extends Component<LoginProps, LoginState> {
 
   public static Captcha: React.FunctionComponent<LoginItemProps>;
 
+  // 默认设置props 属性
   static defaultProps = {
     className: '',
     defaultActiveKey: '',
@@ -110,16 +110,9 @@ class Login extends Component<LoginProps, LoginState> {
 
   handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const { active = {}, type = '' } = this.state;
-    const { form, onSubmit } = this.props;
-    const activeFields = active[type] || [];
-    if (form) {
-      form.validateFields(activeFields as string[], { force: true }, (err, values) => {
-        if (onSubmit) {
-          onSubmit(err, values);
-        }
-      });
-    }
+    localStorage.setItem('token', 'token');
+    const { onSubmit } = this.props;
+    onSubmit(true);
   };
 
   render() {

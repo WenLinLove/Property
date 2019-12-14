@@ -98,7 +98,7 @@ export default {
           routes: [
             {
               path: '/',
-              redirect: '/user/login',
+              redirect: '/welcome',
             },
             {
               path: '/welcome',
@@ -117,6 +117,12 @@ export default {
               name: 'greenConservation',
               icon: 'account-book',
               component: './GreenConservation',
+            },
+            {
+              path: '/sanitary',
+              name: 'sanitary',
+              icon: 'account-book',
+              component: './Sanitary',
             },
 
             // {

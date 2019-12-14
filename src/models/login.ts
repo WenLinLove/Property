@@ -35,15 +35,7 @@ const Model: LoginModelType = {
 
   effects: {
     *login({ payload }, { call, put }) {
-      const response = yield call(fakeAccountLogin, payload);
-      yield put({
-        type: 'changeLoginStatus',
-        payload: response,
-      });
-      // Login successfully
-      if (response.status === 'ok') {
-        yield put(routerRedux.replace('/welcome'));
-      }
+      yield put(routerRedux.replace('/welcome'));
     },
 
     *getCaptcha({ payload }, { call }) {

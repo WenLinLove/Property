@@ -58,15 +58,24 @@ class AvatarDropdown extends React.Component<GlobalHeaderRightProps> {
       </Menu>
     );
 
-    return currentUser && currentUser.name ? (
+    // return currentUser && currentUser.name ? (
+    //   <HeaderDropdown overlay={menuHeaderDropdown}>
+    //     <span className={`${styles.action} ${styles.account}`}>
+    //       <Avatar size="small" className={styles.avatar} src={currentUser.avatar} alt="avatar" />
+    //       <span className={styles.name}>{currentUser.name}</span>
+    //     </span>
+    //   </HeaderDropdown>
+    // ) : (
+    //   <Spin size="small" style={{ marginLeft: 8, marginRight: 8 }} />
+    // );
+
+    return (
       <HeaderDropdown overlay={menuHeaderDropdown}>
         <span className={`${styles.action} ${styles.account}`}>
           <Avatar size="small" className={styles.avatar} src={currentUser.avatar} alt="avatar" />
-          <span className={styles.name}>{currentUser.name}</span>
+          <span className={styles.name}> 管理员</span>
         </span>
       </HeaderDropdown>
-    ) : (
-      <Spin size="small" style={{ marginLeft: 8, marginRight: 8 }} />
     );
   }
 }
