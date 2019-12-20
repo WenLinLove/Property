@@ -124,6 +124,18 @@ export default {
               icon: 'account-book',
               component: './Sanitary',
             },
+            {
+              path: '/administrativeoffice',
+              name: 'administrativeoffice',
+              icon: 'account-book',
+              component: './Administrativeoffice',
+            },
+            {
+              path: '/fixedassets',
+              name: 'fixedassets',
+              icon: 'account-book',
+              component: './Fixedassets',
+            },
 
             // {
             //   path: '/admin',

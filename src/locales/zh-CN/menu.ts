@@ -2,6 +2,8 @@ export default {
   'menu.welcome': '创建项目',
   'menu.greenConservation': '绿化养护',
   'menu.sanitary': '清洁卫生',
+  'menu.administrativeoffice': '行政办公费',
+  'menu.fixedassets': '固定资产折旧',
   'menu.more-blocks': '更多区块',
   'menu.home': '首页',
   'menu.admin': '测算评估',
