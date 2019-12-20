@@ -51,6 +51,7 @@ const Model: LoginModelType = {
           }),
         );
       }
+      localStorage.clear();
     },
   },
 
