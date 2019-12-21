@@ -115,25 +115,25 @@ export default {
             {
               path: '/greenConservation',
               name: 'greenConservation',
-              icon: 'account-book',
+              icon: 'bar-chart',
               component: './GreenConservation',
             },
             {
               path: '/sanitary',
               name: 'sanitary',
-              icon: 'account-book',
+              icon: 'dot-chart',
               component: './Sanitary',
             },
             {
               path: '/administrativeoffice',
               name: 'administrativeoffice',
-              icon: 'account-book',
+              icon: 'unordered-list',
               component: './Administrativeoffice',
             },
             {
               path: '/fixedassets',
               name: 'fixedassets',
-              icon: 'account-book',
+              icon: 'form',
               component: './Fixedassets',
             },
 
