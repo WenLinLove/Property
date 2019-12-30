@@ -4,6 +4,7 @@ export default {
   'menu.sanitary': '清洁卫生',
   'menu.administrativeoffice': '行政办公费',
   'menu.fixedassets': '固定资产折旧',
+  'menu.securityModule': '安保模块',
   'menu.more-blocks': '更多区块',
   'menu.home': '首页',
   'menu.admin': '测算评估',

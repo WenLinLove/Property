@@ -2,8 +2,6 @@ import { Reducer } from 'redux';
 import { routerRedux } from 'dva/router';
 import { Effect } from 'dva';
 import { stringify } from 'querystring';
-
-import { fakeAccountLogin, getFakeCaptcha } from '@/services/login';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 
@@ -39,7 +37,7 @@ const Model: LoginModelType = {
     },
 
     *getCaptcha({ payload }, { call }) {
-      yield call(getFakeCaptcha, payload);
+
     },
     *logout(_, { put }) {
       const { redirect } = getPageQuery();

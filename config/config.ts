@@ -136,6 +136,13 @@ export default {
               icon: 'form',
               component: './Fixedassets',
             },
+            {
+              path: '/securityModule',
+              name: 'securityModule',
+              icon: 'usergroup-delete',
+              component: './SecurityModule',
+            },
+            
 
             // {
             //   path: '/admin',

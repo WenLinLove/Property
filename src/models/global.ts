@@ -2,7 +2,6 @@ import { Reducer } from 'redux';
 import { Subscription, Effect } from 'dva';
 
 import { NoticeIconData } from '@/components/NoticeIcon';
-import { queryNotices } from '@/services/user';
 import { ConnectState } from './connect.d';
 
 export interface NoticeItem extends NoticeIconData {
@@ -42,11 +41,8 @@ const GlobalModel: GlobalModelType = {
 
   effects: {
     *fetchNotices(_, { call, put, select }) {
-      const data = yield call(queryNotices);
-      yield put({
-        type: 'saveNotices',
-        payload: data,
-      });
+      const data = {};
+
       const unreadCount: number = yield select(
         (state: ConnectState) => state.global.notices.filter(item => !item.read).length,
       );
@@ -86,10 +82,6 @@ const GlobalModel: GlobalModelType = {
         }),
       );
 
-      yield put({
-        type: 'saveNotices',
-        payload: notices,
-      });
 
       yield put({
         type: 'user/changeNotifyCount',
@@ -106,13 +98,6 @@ const GlobalModel: GlobalModelType = {
       return {
         ...state,
         collapsed: payload,
-      };
-    },
-    saveNotices(state, { payload }): GlobalModelState {
-      return {
-        collapsed: false,
-        ...state,
-        notices: payload,
       };
     },
     saveClearedNotices(state = { notices: [], collapsed: true }, { payload }): GlobalModelState {
