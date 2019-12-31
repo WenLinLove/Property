@@ -1,4 +1,4 @@
-import { Form, Tabs } from 'antd';
+import { Form, Tabs, message } from 'antd';
 import React, { Component } from 'react';
 import { FormComponentProps } from 'antd/es/form';
 import classNames from 'classnames';
@@ -111,8 +111,20 @@ class Login extends Component<LoginProps, LoginState> {
   handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     localStorage.setItem('token', 'token');
-    const { onSubmit } = this.props;
-    onSubmit(true);
+    const { active = {}, type = '' } = this.state;
+    const { form, onSubmit } = this.props;
+    const activeFields = active[type] || [];
+    if (form) {
+      form.validateFields(activeFields as string[], { force: true }, (err, values) => {
+        if (onSubmit) {
+          if (values.userName == 'admin' && values.password == '123456') {
+            onSubmit(true);
+          } else {
+            message.warning('账号或密码不正确！！！');
+          }
+        }
+      });
+    }
   };
 
   render() {
