@@ -148,7 +148,24 @@ export default {
               icon: 'usergroup-delete',
               component: './ManagementModule',
             },
-
+            {
+              path: '/insuranceCost',
+              name: 'insuranceCost',
+              icon: 'form',
+              component: './InsuranceCost',
+            },
+            {
+              path: '/profit',
+              name: 'profit',
+              icon: 'usergroup-delete',
+              component: './profit',
+            },
+            {
+              path: '/taxes',
+              name: 'taxes',
+              icon: 'usergroup-delete',
+              component: './taxes',
+            },
             // {
             //   path: '/admin',
             //   name: 'admin',

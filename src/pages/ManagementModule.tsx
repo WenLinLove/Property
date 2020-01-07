@@ -1,11 +1,13 @@
 import * as React from 'react';
 import styles from './Styles.less';
-import { Input, PageHeader, Button, Select, Table } from 'antd';
+import { Input, PageHeader, Button, Select, Table, Tabs } from 'antd';
 import { ConnectState } from '@/models/connect';
 import { connect } from 'dva';
 import { queryNotices } from '@/services/listData';
 
 const { Option } = Select;
+
+const { TabPane } = Tabs;
 
 interface IProps {}
 interface IState {
@@ -24,10 +26,12 @@ interface IState {
   inpValu10: any;
   inpValu11: any;
   tableArr: any;
+  tableArr1: any;
   xiaojizonge: any;
   cxiaoji: any;
   mjze: any;
   zmj: any;
+  dengj: any;
 }
 
 const columns = [
@@ -93,6 +97,34 @@ const columns = [
   },
 ];
 
+const columns1 = [
+  {
+    title: '人员配置',
+    dataIndex: 'name',
+    key: 'name',
+  },
+  {
+    title: '数量',
+    dataIndex: 'num',
+    key: 'num',
+  },
+  {
+    title: '薪资标准',
+    dataIndex: 'num',
+    key: 'num',
+    render: (tags: any) => (
+      <span>
+        <span>薪资：</span>
+        <Input placeholder="Basic usage" />
+      </span>
+    ),
+  },
+];
+
+function callback(key) {
+  console.log(key);
+}
+
 // @connect(({ login, loading }: ConnectState) => ({
 //   userLogin: login,
 //   submitting: loading.effects['login/login'],
@@ -115,10 +147,12 @@ class SecurityModule extends React.Component<IProps, IState> {
       inpValu9: '',
       inpValu10: '',
       tableArr: [],
+      tableArr1: [],
       xiaojizonge: 0,
       zmj: 0,
       mjze: 0,
       cxiaoji: 0,
+      dengj: 1,
     };
   }
 
@@ -135,6 +169,65 @@ class SecurityModule extends React.Component<IProps, IState> {
     console.log(`selected ${value}`);
     this.setState({
       inpValu1: value,
+    });
+  }
+
+  handleChange1(value: any) {
+    console.log(`selected ${value}`);
+    this.setState({
+      dengj: value,
+    });
+  }
+  optionList_g() {
+    let data: any = [
+      {
+        name: '项目经理',
+        num: 1,
+      },
+      {
+        name: '项目副经理',
+        num: parseInt(Number(this.state.inpValu) / 80000),
+      },
+      {
+        name: '客服经理',
+        num: parseInt(Number(this.state.inpValu) / 80000),
+      },
+      {
+        name: '客服主管',
+        num: Number(this.state.inpValu) / 80000,
+      },
+      {
+        name: '管理员',
+        num: parseInt(Number(this.state.inpValu) / 20000),
+      },
+      {
+        name: '档案管理',
+        num: this.state.dengj > 3 ? 1 : 0,
+      },
+      {
+        name: '办公室主任',
+        num: Number(this.state.inpValu) > 50000 ? 1 : 0,
+      },
+      {
+        name: '办公室文员',
+        num: Number(this.state.inpValu) < 200000 ? 1 : 2,
+      },
+      {
+        name: '财务经理',
+        num: Number(this.state.inpValu) > 100000 ? 1 : 0,
+      },
+      {
+        name: '财务人员',
+        num: Number(this.state.inpValu) < 30000 ? 1 : 2,
+      },
+      {
+        name: '财务主管',
+        num: Number(this.state.inpValu) < 100000 ? 1 : 0,
+      },
+    ];
+
+    this.setState({
+      tableArr1: data,
     });
   }
 
@@ -250,151 +343,218 @@ class SecurityModule extends React.Component<IProps, IState> {
       <div className={styles.admin_tab}>
         <PageHeader title="管理人员信息采集测算" subTitle="" />
 
-        <div className={styles.anb_list}>
-          <div className={styles.listcenter}>
-            <h3>管理人员信息采集测算</h3>
-            <div className={styles.greenpd}>
-              <div>
-                <span>录入面积：</span>
-                <Input
-                  placeholder="Basic usage"
-                  onChange={e => this.handelChange(e)}
-                  defaultValue={this.state.inpValu}
-                />
-                <span>平米</span>
+        <Tabs defaultActiveKey="1" onChange={callback}>
+          <TabPane tab="精算" key="1">
+            <div className={styles.anb_list1}>
+              <div className={styles.listcenter}>
+                <h3>管理人员信息采集测算</h3>
               </div>
-            </div>
+              <div className={styles.anb_list1}>
+                <div className={styles.listcenter}>
+                  <h3>管理人员信息采集测算</h3>
+                  <div className={styles.greenpd}>
+                    <div>
+                      <span>录入面积：</span>
+                      <Input
+                        placeholder="Basic usage"
+                        onChange={e => this.handelChange(e)}
+                        defaultValue={this.state.inpValu}
+                      />
+                      <span>平米</span>
+                    </div>
+                  </div>
 
-            <div className={styles.greenpd}>
-              <div>
-                <span>职位名称：</span>
-                <Select
-                  defaultValue=""
-                  style={{ width: 300 }}
-                  onChange={(val: any) => this.handleChange(val)}
-                >
-                  <Option value="项目经理">项目经理</Option>
-                  <Option value="项目副经理">项目副经理</Option>
-                  <Option value="客服经理">客服经理</Option>
-                  <Option value="管理员">管理员</Option>
-                  <Option value="档案管理">档案管理</Option>
-                  <Option value="办公室主任">办公室主任</Option>
-                  <Option value="办公室文员">办公室文员</Option>
-                  <Option value="财务经理">财务经理</Option>
-                  <Option value="财务人员">财务人员</Option>
-                  <Option value="财务主管">财务主管</Option>
-                </Select>
-              </div>
-            </div>
-            <div className={styles.greenpd}>
-              <div>
-                <span>数量：</span>
-                <Input
-                  placeholder="Basic usage"
-                  onChange={e => this.handelChange2(e)}
-                  defaultValue={this.state.inpValu2}
-                />
-              </div>
-            </div>
-            <div className={styles.greenpd}>
-              <div>
-                <span>薪资标准：</span>
-                <Input
-                  placeholder="Basic usage"
-                  onChange={e => this.handelChange3(e)}
-                  defaultValue={this.state.inpValu3}
-                />
-              </div>
-            </div>
+                  <div className={styles.greenpd}>
+                    <div>
+                      <span>职位名称：</span>
+                      <Select
+                        defaultValue=""
+                        style={{ width: 300 }}
+                        onChange={(val: any) => this.handleChange(val)}
+                      >
+                        <Option value="项目经理">项目经理</Option>
+                        <Option value="项目副经理">项目副经理</Option>
+                        <Option value="客服经理">客服经理</Option>
+                        <Option value="管理员">管理员</Option>
+                        <Option value="档案管理">档案管理</Option>
+                        <Option value="办公室主任">办公室主任</Option>
+                        <Option value="办公室文员">办公室文员</Option>
+                        <Option value="财务经理">财务经理</Option>
+                        <Option value="财务人员">财务人员</Option>
+                        <Option value="财务主管">财务主管</Option>
+                      </Select>
+                    </div>
+                  </div>
+                  <div className={styles.greenpd}>
+                    <div>
+                      <span>数量：</span>
+                      <Input
+                        placeholder="Basic usage"
+                        onChange={e => this.handelChange2(e)}
+                        defaultValue={this.state.inpValu2}
+                      />
+                    </div>
+                  </div>
+                  <div className={styles.greenpd}>
+                    <div>
+                      <span>薪资标准：</span>
+                      <Input
+                        placeholder="Basic usage"
+                        onChange={e => this.handelChange3(e)}
+                        defaultValue={this.state.inpValu3}
+                      />
+                    </div>
+                  </div>
 
-            <div className={styles.greenpd}>
-              <div>
-                <span>餐费补助：</span>
-                <Input
-                  placeholder="Basic usage"
-                  onChange={e => this.handelChange4(e)}
-                  defaultValue={this.state.inpValu4}
-                />
-              </div>
-            </div>
-            <div className={styles.greenpd}>
-              <div>
-                <span>高温补贴：</span>
-                <Input
-                  placeholder="Basic usage"
-                  onChange={e => this.handelChange5(e)}
-                  defaultValue={this.state.inpValu5}
-                />
-              </div>
-            </div>
-            <div className={styles.greenpd}>
-              <div>
-                <span>加班费：</span>
-                <Input
-                  placeholder="Basic usage"
-                  onChange={e => this.handelChange6(e)}
-                  defaultValue={this.state.inpValu6}
-                />
-              </div>
-            </div>
+                  <div className={styles.greenpd}>
+                    <div>
+                      <span>餐费补助：</span>
+                      <Input
+                        placeholder="Basic usage"
+                        onChange={e => this.handelChange4(e)}
+                        defaultValue={this.state.inpValu4}
+                      />
+                    </div>
+                  </div>
+                  <div className={styles.greenpd}>
+                    <div>
+                      <span>高温补贴：</span>
+                      <Input
+                        placeholder="Basic usage"
+                        onChange={e => this.handelChange5(e)}
+                        defaultValue={this.state.inpValu5}
+                      />
+                    </div>
+                  </div>
+                  <div className={styles.greenpd}>
+                    <div>
+                      <span>加班费：</span>
+                      <Input
+                        placeholder="Basic usage"
+                        onChange={e => this.handelChange6(e)}
+                        defaultValue={this.state.inpValu6}
+                      />
+                    </div>
+                  </div>
 
-            <div className={styles.greenpd}>
-              <div>
-                <span>劳保费用：</span>
-                <Input
-                  placeholder="Basic usage"
-                  onChange={e => this.handelChange7(e)}
-                  defaultValue={this.state.inpValu7}
+                  <div className={styles.greenpd}>
+                    <div>
+                      <span>劳保费用：</span>
+                      <Input
+                        placeholder="Basic usage"
+                        onChange={e => this.handelChange7(e)}
+                        defaultValue={this.state.inpValu7}
+                      />
+                    </div>
+                  </div>
+
+                  <div className={styles.greenpd}>
+                    <div>
+                      <span>其他福利：</span>
+                      <Input
+                        placeholder="Basic usage"
+                        onChange={e => this.handelChange8(e)}
+                        defaultValue={this.state.inpValu8}
+                      />
+                    </div>
+                  </div>
+                  <div className={styles.greenpd}>
+                    <div>
+                      <span>服装费：</span>
+                      <Input
+                        placeholder="Basic usage"
+                        onChange={e => this.handelChange9(e)}
+                        defaultValue={this.state.inpValu9}
+                      />
+                    </div>
+                  </div>
+                  <div className={styles.greenpd}>
+                    <div>
+                      <span>社保费用：(自动计算出来！！！！！)</span>
+                      <Input placeholder="Basic usage" value={this.state.inpValu10} disabled />
+                    </div>
+                  </div>
+                  <div className={styles.greenpd}>
+                    <div>
+                      <span>支出小计：(支出小计 根据计算公式 会在表格展示 不提供输入)</span>
+                      <Input placeholder="Basic usage" value={this.state.cxiaoji} disabled />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div style={{ textAlign: 'center', width: '100%', margin: '10px 0 20px' }}>
+                <Button type="primary" onClick={() => this.optionList()}>
+                  精算
+                </Button>
+              </div>
+
+              <div style={{ width: '100%' }}>
+                <span>支出总计：{this.state.xiaojizonge} </span>
+                <span>单位面积价格：{this.state.mjze} </span>
+              </div>
+              <Table
+                columns={columns}
+                dataSource={this.state.tableArr}
+                rowKey={(record: any) => record.name}
+              />
+            </div>
+          </TabPane>
+          <TabPane tab="估算" key="2">
+            <div className={styles.anb_list1}>
+              <div className={styles.listcenter}>
+                <h3>管理人员信息采集测算</h3>
+                <div className={styles.anb_list1}>
+                  <div className={styles.listcenter}>
+                    <h3>管理人员信息采集测算</h3>
+                    <div className={styles.greenpd}>
+                      <div>
+                        <span>录入面积：</span>
+                        <Input
+                          placeholder="Basic usage"
+                          onChange={e => this.handelChange(e)}
+                          defaultValue={this.state.inpValu}
+                        />
+                        <span>平米</span>
+                      </div>
+                    </div>
+
+                    <div className={styles.greenpd}>
+                      <div>
+                        <span>选择等级：</span>
+                        <Select
+                          defaultValue=""
+                          style={{ width: 300 }}
+                          onChange={(val: any) => this.handleChange1(val)}
+                        >
+                          <Option value="1">一级</Option>
+                          <Option value="2">二级</Option>
+                          <Option value="3">三级</Option>
+                          <Option value="4">四级</Option>
+                          <Option value="5">五级</Option>
+                        </Select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div style={{ textAlign: 'center', width: '100%', margin: '10px 0 20px' }}>
+                  <Button type="primary" onClick={() => this.optionList_g()}>
+                    估算
+                  </Button>
+                </div>
+
+                <div style={{ width: '100%' }}>
+                  <span>支出总计：{this.state.xiaojizonge} </span>
+                  <span>单位面积价格：{this.state.mjze} </span>
+                </div>
+                <Table
+                  columns={columns1}
+                  dataSource={this.state.tableArr1}
+                  rowKey={(record: any) => record.name}
                 />
               </div>
             </div>
-
-            <div className={styles.greenpd}>
-              <div>
-                <span>其他福利：</span>
-                <Input
-                  placeholder="Basic usage"
-                  onChange={e => this.handelChange8(e)}
-                  defaultValue={this.state.inpValu8}
-                />
-              </div>
-            </div>
-            <div className={styles.greenpd}>
-              <div>
-                <span>服装费：</span>
-                <Input
-                  placeholder="Basic usage"
-                  onChange={e => this.handelChange9(e)}
-                  defaultValue={this.state.inpValu9}
-                />
-              </div>
-            </div>
-            <div className={styles.greenpd}>
-              <div>
-                <span>社保费用：(自动计算出来！！！！！)</span>
-                <Input placeholder="Basic usage" value={this.state.inpValu10} disabled />
-              </div>
-            </div>
-            <div className={styles.greenpd}>
-              <div>
-                <span>支出小计：(支出小计 根据计算公式 会在表格展示 不提供输入)</span>
-                <Input placeholder="Basic usage" value={this.state.cxiaoji} disabled />
-              </div>
-            </div>
-          </div>
-
-          <div style={{ textAlign: 'center', width: '100%', margin: '10px 0 20px' }}>
-            <Button type="primary" onClick={() => this.optionList()}>
-              估算
-            </Button>
-          </div>
-
-          <div style={{ width: '100%' }}>
-            <span>支出总计：{this.state.xiaojizonge} </span>
-            <span>单位面积价格：{this.state.mjze} </span>
-          </div>
-          <Table columns={columns} dataSource={this.state.tableArr} />
-        </div>
+          </TabPane>
+        </Tabs>
       </div>
     );
   }

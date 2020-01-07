@@ -30,7 +30,7 @@ const data = [
     age: 1000,
   },
   {
-    key: '1',
+    key: '2',
     name: '宿舍费',
     age: 1000,
   },
