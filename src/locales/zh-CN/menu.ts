@@ -5,6 +5,7 @@ export default {
   'menu.administrativeoffice': '行政办公费',
   'menu.fixedassets': '固定资产折旧',
   'menu.securityModule': '安保模块',
+  'menu.managementModule': '管理模块',
   'menu.more-blocks': '更多区块',
   'menu.home': '首页',
   'menu.admin': '测算评估',

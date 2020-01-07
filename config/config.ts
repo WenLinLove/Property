@@ -142,7 +142,12 @@ export default {
               icon: 'usergroup-delete',
               component: './SecurityModule',
             },
-            
+            {
+              path: '/managementModule',
+              name: 'managementModule',
+              icon: 'usergroup-delete',
+              component: './ManagementModule',
+            },
 
             // {
             //   path: '/admin',
