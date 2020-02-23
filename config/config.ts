@@ -166,6 +166,19 @@ export default {
               icon: 'usergroup-delete',
               component: './taxes',
             },
+            {
+              path: '/depreciationoffixedassets',
+              name: 'depreciationoffixedassets',
+              icon: 'usergroup-delete',
+              component: './depreciationoffixedassets',
+            },
+            {
+              path: '/rderfirefighting',
+              name: 'rderfirefighting',
+              icon: 'usergroup-delete',
+              component: './rderfirefighting',
+            },
+
             // {
             //   path: '/admin',
             //   name: 'admin',

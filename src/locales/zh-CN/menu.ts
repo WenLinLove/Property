@@ -9,7 +9,8 @@ export default {
   'menu.insuranceCost': '保险费用',
   'menu.profit': '利润',
   'menu.taxes': '税金',
-
+  'menu.depreciationoffixedassets': '固定资产折旧',
+  'menu.rderfirefighting': '秩序维护及消防服务',
   'menu.more-blocks': '更多区块',
   'menu.home': '首页',
   'menu.admin': '测算评估',
